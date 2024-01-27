@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${person.getFullName()}">Пользователь</title>
+</head>
+<body>
+<p th:text="${'Имя пользователя: ' + person.getFullName()}">Имя пользователя</p>
+<p th:text="${'Год рождения: ' + person.getYearOfBirth()}">Год рождения</p>
+<p th:text="${'Айди в БД: ' + person.getId()}"></p>
+
+<div th:if="${books.isEmpty()}">
+    <p>Человек пока не взял ни одной книги</p>
+    <hr/>
+</div>
+
+<div th:if="${!books.isEmpty()}">
+    <b>Книги пользователя на руках:</b> <br/>
+    <table th:each="book : ${books}">
+        <tr th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}">Книги на руках</tr>
+    </table>
+    <hr/>
+</div>
+
+<form th:method="GET" th:action="@{/people/{id}/edit(id = ${person.getId()})}">
+    <input type="submit" value="Редактировать пользователя">
+</form><br/>
+
+<form th:method="DELETE" th:action="@{/people/{id}(id = ${person.getId()})}">
+    <input type="submit" value="Удалить пользователя">
+</form>
+
+<hr/>
+<form th:method="GET" th:action="@{/people}">
+    <input type="submit" value="Вернуться к списку пользователей">
+</form>
+<hr/>
+<form th:method="GET" th:action="@{/books}">
+    <input type="submit" value="Вернуться к списку книг">
+</form>
+
+</body>
+</html>
