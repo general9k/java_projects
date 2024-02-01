@@ -18,7 +18,6 @@ public class BooksController {
     private final BooksService booksService;
     private final PeopleService peopleService;
 
-
     @Autowired
     public BooksController(BooksService booksService, PeopleService peopleService) {
         this.booksService = booksService;
@@ -102,16 +101,16 @@ public class BooksController {
         return "redirect:/books/" + id;
     }
 
-//    @GetMapping("/search")
-//    public String searchPage() {
-//        return "books/search";
-//    }
-//
-//    @PostMapping("/search")
-//    public String makeSearch(Model model, @RequestParam("query") String query) {
-//        model.addAttribute("books", booksService.searchByTitle(query));
-//        return "books/search";
-//    }
+    @GetMapping("/search")
+    public String searchPage() {
+        return "books/search";
+    }
+
+    @PostMapping("/search")
+    public String makeSearch(Model model, @RequestParam("query") String query) {
+        model.addAttribute("books", booksService.searchByTitle(query));
+        return "books/search";
+    }
 }
 
 

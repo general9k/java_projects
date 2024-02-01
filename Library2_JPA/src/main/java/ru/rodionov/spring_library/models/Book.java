@@ -32,6 +32,7 @@ public class Book {
     @JoinColumn(name = "person_id", referencedColumnName = "id")
     private Person owner;
 
+
     @Column(name = "taken_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date takenAt;

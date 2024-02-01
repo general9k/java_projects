@@ -9,7 +9,7 @@
   <url>https://maven.apache.org</url>
 
   <properties>
-    <spring.version>5.3.24</spring.version>
+    <spring.version>5.3.5</spring.version>
     <hibernate.version>5.4.28.Final</hibernate.version>
   </properties>
 
@@ -17,7 +17,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+      <version>4.11</version>
       <scope>test</scope>
     </dependency>
 
@@ -54,7 +54,7 @@
     <dependency>
       <groupId>org.thymeleaf</groupId>
       <artifactId>thymeleaf-spring5</artifactId>
-      <version>3.0.13.RELEASE</version>
+      <version>3.0.11.RELEASE</version>
     </dependency>
 
     <dependency>
@@ -74,7 +74,7 @@
     <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
-      <version>42.5.1</version>
+      <version>42.2.18</version>
     </dependency>
 
     <!--ORM Related dependencies -->
@@ -99,6 +99,13 @@
       <artifactId>spring-data-jpa</artifactId>
       <version>2.4.7</version>
     </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+       <version>2.4.7</version>
+    </dependency>
   </dependencies>
 
 
@@ -107,6 +114,15 @@
     <finalName>spring_library</finalName>
     <pluginManagement>
       <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>8</source>
+            <target>8</target>
+          </configuration>
+        </plugin>
+
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-war-plugin</artifactId>

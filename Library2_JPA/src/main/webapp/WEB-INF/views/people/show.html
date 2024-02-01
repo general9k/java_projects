@@ -17,11 +17,20 @@
 <div th:if="${!books.isEmpty()}">
     <b>Книги пользователя на руках:</b> <br/>
     <table th:each="book : ${books}">
-        <tr th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}">Книги на руках</tr>
+        <tr>
+            <td>
+                <div th:if="${book.isExpired()}">
+                    <span th:style="'color: red'"
+                          th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear() + ' - ПРОСРОЧЕНО'}">Просроченная книга</span>
+                </div>
+                <div th:if="${!book.isExpired()}">
+                    <span th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}">Занятая книга</span>
+                </div>
+            </td>
+        </tr>
     </table>
-    <hr/>
 </div>
-
+<br/>
 <form th:method="GET" th:action="@{/people/{id}/edit(id = ${person.getId()})}">
     <input type="submit" value="Редактировать пользователя">
 </form><br/>

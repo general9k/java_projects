@@ -6,6 +6,7 @@ import ru.rodionov.spring_library.models.Person;
 
 import java.util.Optional;
 
+
 @Repository
 public interface PeopleRepository extends JpaRepository<Person, Integer> {
     Optional<Person> findByFullName(String fullName);

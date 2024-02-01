@@ -1,6 +1,7 @@
 package ru.rodionov.spring_library.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -29,8 +30,9 @@ import java.util.Properties;
 @ComponentScan("ru.rodionov.spring_library")
 @PropertySource("classpath:hibernate.properties")
 @EnableTransactionManagement
-@EnableJpaRepositories("ru.rodionov.spring_library.repositories")
+@EnableJpaRepositories(basePackages = {"ru.rodionov.spring_library.repositories"})
 @EnableWebMvc
+@EntityScan(basePackages = {"ru.rodionov.spring_library.models"})
 public class SpringConfig implements WebMvcConfigurer {
 
     private final ApplicationContext applicationContext;
@@ -94,7 +96,7 @@ public class SpringConfig implements WebMvcConfigurer {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan("ru.rodionov.project_library.models");
+        em.setPackagesToScan("ru.rodionov.spring_library.models");
 
         final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
